@@ -59,6 +59,29 @@ function draw() {
     for (let g = 0; g < orderedGamepads.length; g++) {
         const gp = orderedGamepads[g];
         if (!!gp) {
+            const axes = gp.axes;
+
+            // スティックの位置をマッピング
+            fill(0);
+            // 方向入れる
+            if(axes[axes.length-1] <= 1){
+              let axesVal = 0;
+              if(g == 0){
+                axesVal = map(axes[axes.length-1], -1, 1, 0, 7);
+                console.log(axesVal);
+              }
+              else {
+                axesVal = map(axes[axes.length-1], -1, 1, 0, 7);
+              }
+              let axesTheta = axesVal * 360 / 8;
+              ellipse(30 * cos(radians(axesTheta))+ g * 100 + 100 , 30 * sin(radians(axesTheta))+ 100, 20, 20);
+            }
+            // ニュートラル位置
+            else {
+              ellipse(g * 100 + 100, 100, 20, 20);
+            }
+
+
 
             for(let i = 0; i < gp.buttons.length; i++) {
 
@@ -67,13 +90,15 @@ function draw() {
                     const pressedIndex = getIndex(pressedId);;
                     // const button = buttonMapping[id] || id;
                     // pressed.push(button);
-                    
+
                     fill(200, 0, 0);
                     ellipse(85, 25 * pressedIndex + 30, 13, 13);
                 }
             }
         }
     }
+
+
 }
 
 function getIndex(id) {
