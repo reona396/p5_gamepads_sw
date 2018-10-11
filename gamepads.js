@@ -60,6 +60,8 @@ function draw() {
         const gp = orderedGamepads[g];
         if (!!gp) {
             const axes = gp.axes;
+            let arrowX = 200;
+            arrowX += g == 0 ? 100 : 0;
 
             // スティックの位置をマッピング
             fill(0);
@@ -67,18 +69,18 @@ function draw() {
             if(axes[axes.length-1] <= 1){
               let axesVal = 0;
               if(g == 0){
-                axesVal = map(axes[axes.length-1], -1, 1, 0, 7);
+                axesVal = map(axes[axes.length-1], -1, 1, 0, 7) - 4;
                 console.log(axesVal);
               }
               else {
                 axesVal = map(axes[axes.length-1], -1, 1, 0, 7);
               }
               let axesTheta = axesVal * 360 / 8;
-              ellipse(30 * cos(radians(axesTheta))+ g * 100 + 100 , 30 * sin(radians(axesTheta))+ 100, 20, 20);
+              ellipse(30 * cos(radians(axesTheta))+ arrowX , 30 * sin(radians(axesTheta))+ 100, 20, 20);
             }
             // ニュートラル位置
             else {
-              ellipse(g * 100 + 100, 100, 20, 20);
+              ellipse(arrowX, 100, 20, 20);
             }
 
 
