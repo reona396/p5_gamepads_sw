@@ -26,10 +26,9 @@ const buttonMapping = {
 }
 
 function setup() {
-  createCanvas(400,670);
+  createCanvas(400,600);
   textAlign(LEFT,CENTER);
 }
-
 
 function draw() {
   background(200);
@@ -70,7 +69,6 @@ function draw() {
               let axesVal = 0;
               if(g == 0){
                 axesVal = map(axes[axes.length-1], -1, 1, 0, 7) - 4;
-                console.log(axesVal);
               }
               else {
                 axesVal = map(axes[axes.length-1], -1, 1, 0, 7);
@@ -83,15 +81,11 @@ function draw() {
               ellipse(arrowX, 100, 20, 20);
             }
 
-
-
             for(let i = 0; i < gp.buttons.length; i++) {
 
                 if(gp.buttons[i].pressed) {
                     const pressedId = (g * 15) + i + g;
                     const pressedIndex = getIndex(pressedId);;
-                    // const button = buttonMapping[id] || id;
-                    // pressed.push(button);
 
                     fill(200, 0, 0);
                     ellipse(85, 25 * pressedIndex + 30, 13, 13);
@@ -99,8 +93,6 @@ function draw() {
             }
         }
     }
-
-
 }
 
 function getIndex(id) {
